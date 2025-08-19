@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.8XCn9grEnZJnK2jnSuBEZQHaEo%26pid%3DApi&f=1&ipt=5a0d30fb2d9c18c69db4d75e035d7e997e4d3da53550996bca360173f2d05650&ipo=images",
+      "name": "Gold",
+      "category": "⤵",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "34₹"
+    },
+    {
+      "id": 2,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.a2Kqxt4zzaRnwENvJlhMiAHaEL%26pid%3DApi&f=1&ipt=2b2ab391b87f7f8942c25d6a704e131e6a8fa7385f0f4f0dca418c062d1d2631&ipo=images",
+      "name": "Bank",
+      "category": "⤴ ",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "42₹"
+    },
+    {
+      "id": 3,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.WQPnsa2Jlv12ZjbQHKUUBAHaE8%26pid%3DApi&f=1&ipt=3dd3769e8b69a69ade7549cb26a666b3e5ac1107cf4293a3e05270f735342a3e&ipo=images",
+      "name": "Bitcoin",
+      "category": "⤵",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "89₹"
+    },
+    {
+      "id": 4,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.V7fPcsXkFljx8hhe7ou7SAHaFZ%26pid%3DApi&f=1&ipt=40092901bbacfd7d2336251112c7f316712702f610298d877d7388ce91fedd37&ipo=images",
+      "name": "Dollars",
+      "category": "⤵",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "34₹"
+    },
+    {
+      "id": 5,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Ry_brXOklTIB3QeGmSLoYgHaE8%26pid%3DApi&f=1&ipt=f223a8ca17ceb3ae1c604384e731e6a3615d30f9e3eeb027fb6b3f4d9027f212&ipo=images",
+      "name": "Construction",
+      "category": "⤵",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "34₹"
+    },
+    {
+      "id": 6,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.eWRysK6mKEvS_JMVhW5OpgHaE6%26pid%3DApi&f=1&ipt=00628bb27b3ed44559c0f9b51584fc4788358e1686f3d3feecd4106ed3a06d72&ipo=images",
+      "name": "Diamond",
+      "category": "⤴",
+      "title": "Monitor your portfolio holdings and performance",
+      "price": "34₹"
+    }
+  ]
+  

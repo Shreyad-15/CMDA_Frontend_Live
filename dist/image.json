@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.rcwP1tDaGrp40Xit7WO-RQHaE7%26pid%3DApi&f=1&ipt=7d09e2d689c525ebadc03a79d391e767a063c177a60e96c0c96670cc7d1beb9e&ipo=images",
+      "heading":"Smart Investment Insights for the Modern Investor",
+      "title":"Investors",
+      "info": "  Equity Hub provides real-time insights and personalized investment strategies to help investors make informed decisions and maximize returns.."
+    },
+    {
+        "id": 2,
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftrade-in.forex%2Fwp-content%2Fuploads%2F2020%2F05%2FForex-Trading-A-Practical-Beginner%25E2%2580%2599s-Guide-scaled.jpg&f=1&nofb=1&ipt=9ae081a0f2584c1bdfe9323693c8431eacc490e53218f27b199f609915c158f7&ipo=images",
+        "heading":"The Trader’s Edge: Power of Data in Every Move",
+        "title":"Traders",
+        "info": " With advanced analytics and trading tools, Equity Hub empowers traders to identify trends, optimize trade execution, and minimize risks."
+      },
+      {
+        "id": 3,
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fperson-reviews-stock-market-data-their-computer-utilizing-advanced-charting-tools-comprehensive-analysis-forecasting_35691-40507.jpg&f=1&nofb=1&ipt=26874b95df484f49105a67ac9da4a3196dc69dea571669bc1ac88b58b73c0209&ipo=images",
+        "heading":"Unlock Hidden Potential with Data Analysis",
+        "title":"Data Analysis",
+        "info": "Equity Hub offers comprehensive market data, visualization tools, and predictive models to support in-depth market analysis and actionable insights."
+      }
+
+]

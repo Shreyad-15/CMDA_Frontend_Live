@@ -1,0 +1,62 @@
+[
+    {
+      question: "What is the 'Capital Market Data Analysis' application?",
+      answer: "The 'Capital Market Data Analysis' application is a platform designed to help users analyze and interpret financial market data, providing valuable insights to make informed decisions."
+    },
+    {
+      question: "How can this application help me analyze market trends?",
+      answer: "The application uses advanced algorithms and data visualization techniques to identify trends, patterns, and anomalies in the market, enabling users to stay ahead in their investment strategies."
+    },
+    {
+      question: "What types of data or insights does the platform provide?",
+      answer: "The platform provides insights such as stock performance, market indices, sector analysis, historical data trends, and predictive analytics."
+    },
+    {
+      question: "Is the data updated in real-time?",
+      answer: "Yes, the platform offers real-time data updates to ensure users have access to the most current market information."
+    },
+    {
+      question: "How do I get started with the application?",
+      answer: "You can get started by signing up on the platform, choosing a subscription plan, and following the onboarding tutorial provided."
+    },
+    {
+      question: "What are the subscription plans or pricing options?",
+      answer: "The platform offers various subscription plans, including free, basic, and premium options. Details can be found on the pricing page."
+    },
+    {
+      question: "Can I customize the analysis based on specific sectors or markets?",
+      answer: "Yes, the application allows you to filter and customize analyses based on specific sectors, markets, or regions."
+    },
+    {
+      question: "Is there a tutorial or support for beginners?",
+      answer: "Absolutely! The platform provides a comprehensive tutorial and dedicated support to help beginners get started."
+    },
+    // {
+    //   question: "Can I export reports or data insights for presentations?",
+    //   answer: "Yes, the platform includes an export feature that allows you to download reports or data insights in various formats for presentations."
+    // },
+    // {
+    //   question: "What level of security does the platform offer for my data?",
+    //   answer: "The platform employs state-of-the-art security measures, including encryption and secure servers, to protect your data."
+    // },
+    // {
+    //   question: "Does this platform support global market analysis or focus on specific regions?",
+    //   answer: "The platform supports both global market analysis and region-specific insights, giving users flexibility based on their needs."
+    // },
+    // {
+    //   question: "Are historical data and trend analysis available?",
+    //   answer: "Yes, the platform provides access to historical data and advanced trend analysis tools."
+    // },
+    // {
+    //   question: "Can I integrate this tool with other applications or software?",
+    //   answer: "Yes, the platform supports integration with popular tools and software through APIs and plugins."
+    // },
+    // {
+    //   question: "What are the system requirements to use the application?",
+    //   answer: "The application is web-based and works on most modern browsers. For the best experience, we recommend using the latest versions of Chrome, Firefox, or Edge."
+    // },
+    // {
+    //   question: "How can I contact customer support for further assistance?",
+    //   answer: "You can contact customer support via email, live chat, or phone. Details are available on the 'Contact Us' page."
+    // }
+  ];
