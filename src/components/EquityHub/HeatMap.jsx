@@ -200,9 +200,9 @@ const Heatmap = ({ symbol }) => {
   }, [symbol, fetchHeatmapData]);
 
   // Memoize plot data, layout, and config to prevent unnecessary re-renders
-  const { data: memoizedData, layout: memoizedLayout, config: memoizedConfig, comment } = useMemo(() => {
+  const { data: memoizedData, layout: memoizedLayout, config: memoizedConfig } = useMemo(() => {
     if (!plotData) {
-      return { data: null, layout: {}, config: {}, comment: "" };
+      return { data: null, layout: {}, config: {} };
     }
     return {
       data: plotData.heatmap_data || null,
@@ -238,7 +238,7 @@ const Heatmap = ({ symbol }) => {
         scrollZoom: false, // Disable scroll zoom for better mobile experience
         ...(plotData.config || {}),
       },
-      comment: plotData.comment || "",
+     
     };
   }, [plotData]);
 
@@ -248,7 +248,7 @@ const Heatmap = ({ symbol }) => {
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300 z-10">
           <HashLoader color="#0369a1" size={window.innerWidth < 640 ? 40 : 60} />
           <p className="mt-4 text-sky-700 dark:text-white font-semibold text-sm sm:text-lg animate-pulse">
-            SMDA...
+            CMDA...
           </p>
         </div>
       )}
@@ -261,24 +261,8 @@ const Heatmap = ({ symbol }) => {
           config={memoizedConfig}
         />
       )}
-      {/* Uncomment and update if comment functionality is needed */}
-      {/* {comment && (
-        <div className="bg-gray-200 p-4 dark:bg-slate-500 dark:text-white">
-          <div className="bg-white flex justify-center items-center space-x-4 p-3 rounded-lg shadow-md dark:bg-slate-800 dark:text-white">
-            <button
-              className="px-6 text-xl font-bold"
-              onClick={() => setShowComment(!showComment)}
-            >
-              {showComment ? "Hide info" : <RiInformation2Fill />}
-            </button>
-          </div>
-          {showComment && (
-            <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100 dark:bg-slate-800 dark:text-white">
-              <p className="text-l font-bold">{comment}</p>
-            </div>
-          )}
-        </div>
-      )} */}
+     
+     
     </div>
   );
 };

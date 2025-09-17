@@ -11,7 +11,7 @@
 //     const [speechPosition, setSpeechPosition] = useState(0); 
 //     const [showComment,setShowComment]=useState(false)
 //     const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
-   
+
 
 //   useEffect(() => {
 //       if (symbol) {
@@ -28,7 +28,7 @@
 //       }
 //     }, [symbol]);
 
- 
+
 //     const handlePlayVoice = () => {
 //     if (isSpeaking) {
 //       // If speaking, stop the speech and store the position
@@ -59,9 +59,9 @@
 //   if (!plotData) {
 //     return <span className="loading loading-bars loading-lg"></span>;
 //   }
-  
+
 //   const { figure, comment } = plotData; // Destructure correctly
-  
+
 //   return (
 //     <div>
 //       <h2 className="text-2xl text-center font-bold mb-3">Candle Breach Analysis</h2>
@@ -84,7 +84,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -93,7 +93,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button>
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100  dark:bg-slate-800 dark:text-white">
@@ -169,7 +169,7 @@
 //     responsive: true,
 //     margin: { t: 50, l: 50, r: 30, b: 50 },
 //   };
-  
+
 //   return (
 //     <div className="space-y-6">
 //       {/* <h2 className="text-2xl text-center font-bold">Candle Breach Analysis</h2> */}
@@ -200,7 +200,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           {/* <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -209,7 +209,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button> */}
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100  dark:bg-slate-800 dark:text-white">
@@ -321,7 +321,7 @@
 //     const [speechPosition, setSpeechPosition] = useState(0); 
 //     const [showComment,setShowComment]=useState(false)
 //     const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
-   
+
 
 //   useEffect(() => {
 //       if (symbol) {
@@ -338,7 +338,7 @@
 //       }
 //     }, [symbol]);
 
- 
+
 //     const handlePlayVoice = () => {
 //     if (isSpeaking) {
 //       // If speaking, stop the speech and store the position
@@ -369,9 +369,9 @@
 //   if (!plotData) {
 //     return <span className="loading loading-bars loading-lg"></span>;
 //   }
-  
+
 //   const { figure, comment } = plotData; // Destructure correctly
-  
+
 //   return (
 //     <div>
 //       <h2 className="text-2xl text-center font-bold mb-3">Candle Breach Analysis</h2>
@@ -394,7 +394,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -403,7 +403,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button>
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100  dark:bg-slate-800 dark:text-white">
@@ -479,7 +479,7 @@
 //     responsive: true,
 //     margin: { t: 50, l: 50, r: 30, b: 50 },
 //   };
-  
+
 //   return (
 //     <div className="space-y-6">
 //       {/* <h2 className="text-2xl text-center font-bold">Candle Breach Analysis</h2> */}
@@ -510,7 +510,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           {/* <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -519,7 +519,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button> */}
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100  dark:bg-slate-800 dark:text-white">
@@ -623,7 +623,7 @@ import Plot from "react-plotly.js";
 
 const CandleBreach = ({ symbol }) => {
   const [plotData, setPlotData] = useState(null);
-  const [comment, setComment] = useState("");
+
   const [config, setConfig] = useState({});
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
@@ -650,14 +650,14 @@ const CandleBreach = ({ symbol }) => {
     const cachedData = getCachedData(cacheKey);
     if (cachedData) {
       setPlotData(cachedData.figure);
-      setComment(cachedData.comment || "");
+
       setConfig(cachedData.config || {});
       return;
     }
 
     fetch(`${API_BASE}/stocks/test/breach_busters`, {
       method: "POST",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
         // Authorization: `Bearer ${localStorage.getItem("authToken")}`,
       },
@@ -666,7 +666,7 @@ const CandleBreach = ({ symbol }) => {
       .then((res) => res.json())
       .then((data) => {
         setPlotData(data.figure);
-        setComment(data.comment || "");
+
         setConfig(data.config || {});
         setCachedData(cacheKey, data);
       })
@@ -683,45 +683,45 @@ const CandleBreach = ({ symbol }) => {
     margin: { t: 50, l: 50, r: 30, b: 50 },
   };
 
-//   return (
-//     <div className="space-y-6">
-//       <Plot
-//         data={plotData.data}
-//         layout={{
-//           ...layout,
-//           autosize: true,
-//           responsive: true,
-//           margin: { t: 50, l: 50, r: 30, b: 50 },
-//         }}
-//         useResizeHandler={true}
-//         style={{ width: "100%", height: "100%" }}
-//         config={config}
-//       />
-    
-//     </div>
-//   );
-// };
+  //   return (
+  //     <div className="space-y-6">
+  //       <Plot
+  //         data={plotData.data}
+  //         layout={{
+  //           ...layout,
+  //           autosize: true,
+  //           responsive: true,
+  //           margin: { t: 50, l: 50, r: 30, b: 50 },
+  //         }}
+  //         useResizeHandler={true}
+  //         style={{ width: "100%", height: "100%" }}
+  //         config={config}
+  //       />
 
-   return (
-        <div className="space-y-6">
-        <Plot
-            data={plotData.data}
-            layout={{
-            ...(plotData.layout || {}),
-            autosize: true,
-            responsive: true,
-            margin: { t: 100, l: 50, r: 30, b: 50 },
-            }}
-            useResizeHandler={true}
-            style={{ width: "100%", height: "100%" }}
-            config={{
-            responsive: true,
-            ...(config || {}),
-            }}
-        />
+  //     </div>
+  //   );
+  // };
 
-        </div>
-    );
+  return (
+    <div className="space-y-6">
+      <Plot
+        data={plotData.data}
+        layout={{
+          ...(plotData.layout || {}),
+          autosize: true,
+          responsive: true,
+          margin: { t: 100, l: 50, r: 30, b: 50 },
+        }}
+        useResizeHandler={true}
+        style={{ width: "100%", height: "100%" }}
+        config={{
+          responsive: true,
+          ...(config || {}),
+        }}
+      />
+
+    </div>
+  );
 };
 
 export default CandleBreach;

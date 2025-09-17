@@ -68,7 +68,7 @@
 //         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
 //       <HashLoader color="#0369a1" size={60} />
 //       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-//         SMDA...
+//         CMDA...
 //       </p>
 //     </div>
 //       ) : (
@@ -87,7 +87,7 @@
 //               style={{ width: "100%", height: "100%" }}
 //               config={config || { responsive: true }}
 //             />
-        
+
 //       )}
 //     </div>
 //   );
@@ -891,8 +891,8 @@ const Tooltip = ({ content, children }) => {
 
   return (
     <div style={{ position: 'relative' }}
-         onMouseEnter={() => setIsVisible(true)}
-         onMouseLeave={() => setIsVisible(false)}
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
     >
       {children}
       {isVisible && (
@@ -971,11 +971,11 @@ export default function Top10Scrips() {
   if (isLoading) {
     return (
       <div className="flex flex-col  items-center justify-center min-h-screen bg-gradient-to-br from-sky-200 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
-      <HashLoader color="#0369a1" size={60} />
-      <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-        CMDA...
-      </p>
-    </div>
+        <HashLoader color="#0369a1" size={60} />
+        <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
+          CMDA...
+        </p>
+      </div>
     );
   }
 
@@ -1073,8 +1073,8 @@ export default function Top10Scrips() {
                 {activeMetric === 'realized'
                   ? 'Top Scrips by Realized PNL'
                   : activeMetric === 'unrealized'
-                  ? 'Top Scrips by Unrealized PNL'
-                  : 'Top Scrips by Brokerage'}
+                    ? 'Top Scrips by Unrealized PNL'
+                    : 'Top Scrips by Brokerage'}
               </h2>
               <p style={{
                 fontSize: '0.8rem',
@@ -1084,8 +1084,8 @@ export default function Top10Scrips() {
               }}>
                 Best performing stocks by {
                   activeMetric === 'realized' ? 'Realized PNL'
-                  : activeMetric === 'unrealized' ? 'Unrealized PNL'
-                  : 'Brokerage'
+                    : activeMetric === 'unrealized' ? 'Unrealized PNL'
+                      : 'Brokerage'
                 }
               </p>
             </div>
@@ -1138,8 +1138,8 @@ export default function Top10Scrips() {
             {
               icon: <FaChartLine />,
               title: activeMetric === 'realized' ? 'Highest Realized PNL'
-                    : activeMetric === 'unrealized' ? 'Highest Unrealized PNL'
-                    : 'Highest Brokerage',
+                : activeMetric === 'unrealized' ? 'Highest Unrealized PNL'
+                  : 'Highest Brokerage',
               value: formatValue(sortedData[0][activeMetric]),
               tooltip: `This shows the stock with the highest ${activeMetric} among top 10.`,
               color: '#4361ee'
@@ -1147,8 +1147,8 @@ export default function Top10Scrips() {
             {
               icon: <FaExchangeAlt />,
               title: activeMetric === 'realized' ? 'Avg Realized PNL'
-                    : activeMetric === 'unrealized' ? 'Avg Unrealized PNL'
-                    : 'Avg Brokerage',
+                : activeMetric === 'unrealized' ? 'Avg Unrealized PNL'
+                  : 'Avg Brokerage',
               value: formatValue(
                 sortedData.reduce((sum, item) => sum + item[activeMetric], 0) / sortedData.length
               ),
@@ -1253,7 +1253,7 @@ export default function Top10Scrips() {
               legend: 'Scrips',
               legendPosition: 'middle',
               legendOffset: 60,
-                         renderTick: tick => {
+              renderTick: tick => {
                 const words = tick.value.split(' ');
                 return (
                   <g transform={`translate(${tick.x},${tick.y + 10})`}>
@@ -1282,14 +1282,14 @@ export default function Top10Scrips() {
               tickPadding: 8,
               tickRotation: 0,
               legend: activeMetric === 'realized' ? 'Realized PNL (₹)'
-                    : activeMetric === 'unrealized' ? 'Unrealized PNL (₹)'
-                    : 'Brokerage (₹)',
+                : activeMetric === 'unrealized' ? 'Unrealized PNL (₹)'
+                  : 'Brokerage (₹)',
               legendPosition: 'middle',
               legendOffset: -70,
               format: formatValue
             }}
             enableGridY={true}
-                     tooltip={({ id, value, indexValue }) => (
+            tooltip={({ id, value, indexValue }) => (
               <div style={{
                 background: 'white',
                 padding: '16px',
@@ -1391,8 +1391,8 @@ export default function Top10Scrips() {
                 background: activeMetric === 'realized'
                   ? 'linear-gradient(90deg, #10B981 0%, #059669 100%)'
                   : activeMetric === 'unrealized'
-                  ? 'linear-gradient(90deg, #4361ee 0%, #3a56e4 100%)'
-                  : 'linear-gradient(90deg, #dc2626 0%, #b91c1c 100%)'
+                    ? 'linear-gradient(90deg, #4361ee 0%, #3a56e4 100%)'
+                    : 'linear-gradient(90deg, #dc2626 0%, #b91c1c 100%)'
               }}></div>
               <span>{activeMetric.charAt(0).toUpperCase() + activeMetric.slice(1)}</span>
             </div>

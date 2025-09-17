@@ -73,7 +73,7 @@
 //          <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
 //       <HashLoader color="#0369a1" size={60} />
 //       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-//         SMDA...
+//         CMDA...
 //       </p>
 //     </div>
 //       ) : (
@@ -601,11 +601,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import { 
+import {
   FaChartColumn as FaChartBar,
   FaArrowTrendUp,
   FaCoins,
-  FaCircleInfo as FaInfoCircle 
+  FaCircleInfo as FaInfoCircle
 } from 'react-icons/fa6';
 import { HashLoader } from 'react-spinners';
 
@@ -963,7 +963,7 @@ export default function BestTradePlot() {
                 </p>
               </div>
             </div>
-            
+
             <div style={styles.viewButtons}>
               <button
                 style={{
@@ -989,12 +989,12 @@ export default function BestTradePlot() {
 
         {/* LOADING / NO DATA STATES */}
         {isLoading ? (
-         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-200 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
-      <HashLoader color="#0369a1" size={60} />
-      <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-        CMDA...
-      </p>
-    </div>
+          <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-200 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
+            <HashLoader color="#0369a1" size={60} />
+            <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
+              CMDA...
+            </p>
+          </div>
         ) : chartData.length === 0 ? (
           <div style={styles.noData}>
             <div style={styles.noDataIcon}>📊</div>
@@ -1005,8 +1005,8 @@ export default function BestTradePlot() {
             {/* ZERO-RETURN CARD */}
             {zeroReturnStocks.length > 0 && (
               <div style={styles.zeroCardWrapper}>
-                <div 
-                  style={styles.zeroCard} 
+                <div
+                  style={styles.zeroCard}
                   onClick={() => setIsZeroModalOpen(true)}
                 >
                   {zeroReturnStocks.length} stocks with <span style={styles.zeroRed}>0% returns</span>
@@ -1112,14 +1112,14 @@ export default function BestTradePlot() {
                   <h3 style={{ marginBottom: '16px', fontSize: '1.2rem' }}>
                     Stocks with 0% Returns ({zeroReturnStocks.length})
                   </h3>
-                  <ul style={{ 
+                  <ul style={{
                     paddingLeft: '20px',
                     margin: '0 0 16px',
                     columns: '2',
                     columnGap: '20px'
                   }}>
                     {zeroReturnStocks.map(s => (
-                      <li key={s.scrip} style={{ 
+                      <li key={s.scrip} style={{
                         marginBottom: '8px',
                         fontSize: '0.9rem',
                         breakInside: 'avoid'

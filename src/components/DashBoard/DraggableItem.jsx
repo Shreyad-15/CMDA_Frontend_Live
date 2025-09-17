@@ -160,11 +160,11 @@
 //       <div className="flex items-center gap-2">
 //         <Icon className="text-white text-xl" />
 //         {label}
-        
+
 //         {/* Render label when sidebar is not collapsed */}
 //         {/* {!collapsed && (
 //           <span className="text-sm text-white font-medium whitespace-nowrap transition-all">
-          
+
 //           </span>
 //         )} */}
 //       </div>
@@ -261,7 +261,7 @@
 //       {label}
 //       {!collapsed && (
 //         <span className="text-white font-medium text-sm whitespace-nowrap">
-         
+
 //         </span>
 //       )}
 //     </div>
@@ -392,7 +392,7 @@
 //         <div
 //           className={` p-2 ${collapsed ? '' : 'w-full'} transition`}
 //         >
-          
+
 //           <img src={icon} alt='img'  size={collapsed ? 0 : 24} className="text-white w-24 h-12" />
 //         </div>
 
@@ -457,6 +457,47 @@
 
 
 
+// import { useDraggable } from '@dnd-kit/core';
+
+// const DraggableItem = ({ id, label, icon, collapsed }) => {
+//   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+//     id,
+//     data: { label },
+//   });
+
+//   return (
+//     <div
+//       ref={setNodeRef}
+//       {...listeners}
+//       {...attributes}
+//       className={`flex flex-col items-center space-y-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg
+//         ${isDragging ? 'opacity-50 scale-95' : 'opacity-100'} cursor-grab active:cursor-grabbing touch-none
+//         ${collapsed ? 'justify-center' : 'justify-start'}`}
+//     >
+//       {typeof icon === 'string' ? (
+//         <>
+//           <img
+//             src={icon}
+//             alt={label}
+//             className={`w-12 h-12 object-contain ${collapsed ? 'w-8 h-8' : 'xs:w-14 xs:h-14'}`}
+//           />
+//           {!collapsed && (
+//             <span className="text-xs font-medium truncate text-gray-200 mt-1">{label}</span>
+//           )}
+//         </>
+//       ) : (
+//         <span className={`text-center font-medium ${collapsed ? 'text-xs' : 'text-sm'}`}>
+//           {label}
+//         </span>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default DraggableItem;
+
+
+
 import { useDraggable } from '@dnd-kit/core';
 
 const DraggableItem = ({ id, label, icon, collapsed }) => {
@@ -479,7 +520,7 @@ const DraggableItem = ({ id, label, icon, collapsed }) => {
           <img
             src={icon}
             alt={label}
-            className={`w-12 h-12 object-contain ${collapsed ? 'w-8 h-8' : 'xs:w-14 xs:h-14'}`}
+            className={`w-full h-auto ${collapsed ? 'w-8 h-8' : 'xs:w-14 xs:h-14'}`}
           />
           {!collapsed && (
             <span className="text-xs font-medium truncate text-gray-200 mt-1">{label}</span>
@@ -495,6 +536,5 @@ const DraggableItem = ({ id, label, icon, collapsed }) => {
 };
 
 export default DraggableItem;
-
 
 

@@ -201,7 +201,7 @@ const MacdPlot = ({ symbol }) => {
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300 z-10">
           <HashLoader color="#0369a1" size={60} />
           <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-            CMDAH...
+            CMDA...
           </p>
         </div>
       )}

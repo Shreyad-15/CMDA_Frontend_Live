@@ -1290,7 +1290,524 @@
 // export default CorporateSignUp;
 
 
+//MAIN CODE BEFORE PROMOCODE
 
+// import React, { useEffect, useState } from 'react';
+// import { useForm } from 'react-hook-form';
+// import { Link, useNavigate } from 'react-router-dom';
+// import toast from 'react-hot-toast';
+// import Login from './Login';
+// import { FaIdCard, FaBuilding, FaUser, FaBriefcase, FaEnvelope, FaPhone, FaLock, FaGlobe, FaArrowRight, FaCalendarAlt, FaMapMarkerAlt, FaVenusMars, FaPlusCircle, FaMinusCircle, FaCheckCircle, FaChevronDown, FaUserTag, FaUserShield } from 'react-icons/fa';
+// import Navbar from './Navbar';
+
+// const CorporateSignUp = () => {
+//   const [showMoreDetails, setShowMoreDetails] = useState(false);
+//   const [verifiedEmail, setVerifiedEmail] = useState('');
+//   const navigate = useNavigate();
+//   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({ mode: "onChange" });
+//   const password = watch("password", "");
+//   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
+
+//   useEffect(() => {
+//     const storedEmail = localStorage.getItem("verifiedEmail");
+//     if (storedEmail) {
+//       setVerifiedEmail(storedEmail);
+//       setValue("email", storedEmail);
+//     }
+//   }, [setValue]);
+
+//   const onSubmit = async (data) => {
+//     const payload = {
+//       companyName: data.companyName,
+//       employeeName: data.employeeName,
+//       email: verifiedEmail || data.email,
+//       password: data.password,
+//       jobTitle: data.jobTitle,
+//       role: data.role,
+//       mobileNum: data.mobileNum,
+//       countryCode: data.countryCode,
+//       userType: data.userType,
+//       ...(showMoreDetails && {
+//         gender: data.gender,
+//         adharcard: data.adharcard,
+//         pancard: data.pancard,
+//         address: data.address,
+//         dateofbirth: data.dateofbirth,
+//         terms: data.terms,
+//       }),
+//     };
+
+//     try {
+//       const response = await fetch(`${API_BASE}/auth/corporate/register`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(payload),
+//       });
+
+//       if (response.ok) {
+//         toast.success("Registration successful! 🎉");
+//         localStorage.removeItem("verifiedEmail");
+//         navigate("/");
+//       } else {
+//         throw new Error(await response.text());
+//       }
+//     } catch (error) {
+//       toast.error("Failed to Sign up. Please try again.");
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex flex-col transition-colors duration-300">
+//   <Navbar/>
+//   <div className="flex-grow flex items-center justify-center p-4 sm:p-6">
+//     <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl">
+//       <div className="text-center mb-6">
+//         <div className="relative inline-block">
+//           <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-2 relative z-10">
+//             Corporate Sign Up
+//           </h1>
+//           <div className="absolute -bottom-1 left-0 w-full h-2 bg-blue-200 dark:bg-blue-700 rounded-full z-0"></div>
+//         </div>
+//         <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium animate-pulse">
+//           New Organization
+//         </span>
+//       </div>
+
+//       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//           {/* Organization Name */}
+//           <div className="md:col-span-2">
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Organization Name
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaBuilding className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="text"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Enter organization name"
+//                 {...register("companyName", { required: "Organization name is required" })}
+//               />
+//               {errors.companyName && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.companyName.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Employee Name */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Employee Name
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaUser className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="text"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Enter employee name"
+//                 {...register("employeeName", { required: "Employee name is required" })}
+//               />
+//               {errors.employeeName && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.employeeName.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Job Title */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Job Title
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaBriefcase className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="text"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Enter job title"
+//                 {...register("jobTitle", { required: "Job title is required" })}
+//               />
+//               {errors.jobTitle && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.jobTitle.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Role */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Role
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaUserShield className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="text"
+//                 value="Admin"
+//                 readOnly
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white transition-all duration-200 cursor-not-allowed"
+//               />
+//               <input type="hidden" {...register("role")} value="Admin" />
+//             </div>
+//           </div>
+
+//           {/* Email */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Email
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaEnvelope className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="email"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 bg-gray-50 dark:bg-gray-600"
+//                 placeholder="Enter corporate email"
+//                 {...register("email", { required: "Email is required" })}
+//                 value={verifiedEmail || ''}
+//                 readOnly={!!verifiedEmail}
+//               />
+//               {verifiedEmail && (
+//                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+//                   <FaCheckCircle className="text-green-500" />
+//                 </div>
+//               )}
+//               {errors.email && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.email.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Contact Number */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Contact Number
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaPhone className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="text"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Enter 10-digit number"
+//                 maxLength={10}
+//                 {...register("mobileNum", {
+//                   required: "Contact number is required",
+//                   pattern: {
+//                     value: /^[0-9]{10}$/,
+//                     message: "Contact number must be exactly 10 digits"
+//                   }
+//                 })}
+//               />
+//               {errors.mobileNum && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.mobileNum.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Country Code */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Country
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaGlobe className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <select
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+//                 {...register("countryCode", { required: "Country is required" })}
+//               >
+//                 <option value="" disabled selected>Select Country</option>
+//                 <option value="+91">India (+91)</option>
+//                 <option value="+93">Afghanistan (+93)</option>
+//                 <option value="+358">Aland Islands (+358)</option>
+//                 <option value="+82">Korea (+82)</option>
+//               </select>
+//               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+//                 <FaChevronDown className="text-gray-400 text-xs" />
+//               </div>
+//               {errors.countryCode && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.countryCode.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* User Type */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> User Type
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaUserTag className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <select
+//                 {...register("userType", { required: "User type is required" })}
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+//               >
+//                 <option value="" disabled selected>Select User Type</option>
+//                 <option value="Salaried">Salaried</option>
+//                 <option value="Housewife">Housewife</option>
+//               </select>
+//               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+//                 <FaChevronDown className="text-gray-400 text-xs" />
+//               </div>
+//               {errors.userType && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.userType.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Password */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Password
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="password"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Enter password"
+//                 onPaste={(e) => e.preventDefault()}
+//                 onCopy={(e) => e.preventDefault()}
+//                 {...register("password", {
+//                   required: "Password is required",
+//                   pattern: {
+//                     value: /^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+//                     message: "Must start with a capital, include a number & special character, min 9 chars"
+//                   }
+//                 })}
+//               />
+//               {errors.password && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.password.message}</span>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* Confirm Password */}
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//               <span className="text-red-500">*</span> Confirm Password
+//             </label>
+//             <div className="relative group">
+//               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                 <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//               </div>
+//               <input
+//                 type="password"
+//                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                 placeholder="Confirm password"
+//                 onPaste={(e) => e.preventDefault()}
+//                 onCopy={(e) => e.preventDefault()}
+//                 {...register("confirmpassword", {
+//                   required: "Confirm password is required",
+//                   validate: (value) => value === password || "Passwords do not match"
+//                 })}
+//               />
+//               {errors.confirmpassword && (
+//                 <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.confirmpassword.message}</span>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Password Requirements */}
+//         <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/50">
+//           <p className="font-medium text-blue-700 dark:text-blue-300 mb-2">Password must:</p>
+//           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-blue-600 dark:text-blue-400">
+//             <li className="flex items-center">
+//               <FaCheckCircle className="mr-2 text-xs" /> At least 9 characters
+//             </li>
+//             <li className="flex items-center">
+//               <FaCheckCircle className="mr-2 text-xs" /> Start with uppercase
+//             </li>
+//             <li className="flex items-center">
+//               <FaCheckCircle className="mr-2 text-xs" /> Include lowercase
+//             </li>
+//             <li className="flex items-center">
+//               <FaCheckCircle className="mr-2 text-xs" /> Include number
+//             </li>
+//             <li className="flex items-center sm:col-span-2">
+//               <FaCheckCircle className="mr-2 text-xs" /> Include special character (!@#$%&*?)
+//             </li>
+//           </ul>
+//         </div>
+
+//         {/* Additional Details Button */}
+//         <div className="flex justify-center">
+//           <button
+//             type="button"
+//             onClick={() => setShowMoreDetails(prev => !prev)}
+//             className="flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
+//           >
+//             {showMoreDetails ? (
+//               <>
+//                 <FaMinusCircle className="mr-2" /> Hide Additional Details
+//               </>
+//             ) : (
+//               <>
+//                 <FaPlusCircle className="mr-2" /> Add More Details
+//               </>
+//             )}
+//           </button>
+//         </div>
+
+//         {/* Additional Fields */}
+//         {showMoreDetails && (
+//           <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fadeIn  gap-4">
+//             {/* Gender */}
+//             <div>
+//               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//                 Gender
+//               </label>
+//               <div className="relative group">
+//                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                   <FaVenusMars className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//                 </div>
+//                 <input
+//                   type="text"
+//                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                   placeholder="Enter gender"
+//                   {...register("gender")}
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Aadhar Card */}
+//             <div>
+//               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//                 Aadhar Card
+//               </label>
+//               <div className="relative group">
+//                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                   <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//                 </div>
+//                 <input
+//                   type="text"
+//                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                   placeholder="Enter Aadhar card number"
+//                   {...register("adharcard")}
+//                 />
+//               </div>
+//             </div>
+
+//             {/* PAN Card */}
+//             <div>
+//               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//                 PAN Card
+//               </label>
+//               <div className="relative group">
+//                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                   <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//                 </div>
+//                 <input
+//                   type="text"
+//                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                   placeholder="Enter PAN card number"
+//                   {...register("pancard")}
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Address */}
+//             <div className="md:col-span-2">
+//               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//                 Address
+//               </label>
+//               <div className="relative group">
+//                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                   <FaMapMarkerAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//                 </div>
+//                 <input
+//                   type="text"
+//                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+//                   placeholder="Enter address"
+//                   {...register("address")}
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Date of Birth */}
+//             <div>
+//               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+//                 Date of Birth
+//               </label>
+//               <div className="relative group">
+//                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+//                   <FaCalendarAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+//                 </div>
+//                 <input
+//                   type="date"
+//                   className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+//                   {...register("dateofbirth")}
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Terms and Conditions */}
+//             <div className="md:col-span-2 flex items-start space-x-3 pt-2">
+//               <div className="flex items-center h-5">
+//                 <input
+//                   type="checkbox"
+//                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
+//                   {...register("terms", { required: showMoreDetails ? "You must agree to the terms" : false })}
+//                 />
+//               </div>
+//               <label className="text-sm text-gray-700 dark:text-gray-300">
+//                 I agree to the <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">Terms and Conditions</a>
+//               </label>
+//               {errors.terms && (
+//                 <span className="text-red-500 text-xs block animate-fadeIn">{errors.terms.message}</span>
+//               )}
+//             </div>
+//           </div>
+//         )}
+
+//         {/* Submit Button */}
+//         <div className="pt-4">
+//           <button
+//             type="submit"
+//             className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 font-medium shadow-md hover:shadow-lg flex items-center justify-center"
+//           >
+//             <span>Register Organization</span>
+//             <FaArrowRight className="ml-2" />
+//           </button>
+//         </div>
+
+//         {/* Login Link */}
+//         {/* <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+//           Already have an account?{' '}
+//           <button
+//             type="button"
+//             className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline"
+//             onClick={() => document.getElementById("my_modal_3").showModal()}
+//           >
+//             Login
+//           </button>
+//           <Login />
+//         </div> */}
+//       </form>
+//     </div>
+//   </div>
+// </div>
+//   );
+// };
+
+// export default CorporateSignUp;
+
+//MAIN CODE BEFORE PROMOCODE
 
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -1306,6 +1823,7 @@ const CorporateSignUp = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({ mode: "onChange" });
   const password = watch("password", "");
+  const confirmPassword = watch("confirmpassword");
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
 
   useEffect(() => {
@@ -1317,16 +1835,23 @@ const CorporateSignUp = () => {
   }, [setValue]);
 
   const onSubmit = async (data) => {
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
     const payload = {
       companyName: data.companyName,
       employeeName: data.employeeName,
       email: verifiedEmail || data.email,
       password: data.password,
+      confirmpassword: data.confirmpassword,
       jobTitle: data.jobTitle,
       role: data.role,
       mobileNum: data.mobileNum,
       countryCode: data.countryCode,
       userType: data.userType,
+      promoCode: data.promoCode, // Added promoCode to payload
       ...(showMoreDetails && {
         gender: data.gender,
         adharcard: data.adharcard,
@@ -1358,450 +1883,468 @@ const CorporateSignUp = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex flex-col transition-colors duration-300">
-  <Navbar/>
-  <div className="flex-grow flex items-center justify-center p-4 sm:p-6">
-    <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl">
-      <div className="text-center mb-6">
-        <div className="relative inline-block">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-2 relative z-10">
-            Corporate Sign Up
-          </h1>
-          <div className="absolute -bottom-1 left-0 w-full h-2 bg-blue-200 dark:bg-blue-700 rounded-full z-0"></div>
-        </div>
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium animate-pulse">
-          New Organization
-        </span>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Organization Name */}
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Organization Name
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaBuilding className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="text"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Enter organization name"
-                {...register("companyName", { required: "Organization name is required" })}
-              />
-              {errors.companyName && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.companyName.message}</span>
-              )}
+      <Navbar />
+      <div className="flex-grow flex items-center justify-center p-4 sm:p-6">
+        <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl">
+          <div className="text-center mb-6">
+            <div className="relative inline-block">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-2 relative z-10">
+                Corporate Sign Up
+              </h1>
+              <div className="absolute -bottom-1 left-0 w-full h-2 bg-blue-200 dark:bg-blue-700 rounded-full z-0"></div>
             </div>
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium animate-pulse">
+              New Organization
+            </span>
           </div>
 
-          {/* Employee Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Employee Name
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaUser className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="text"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Enter employee name"
-                {...register("employeeName", { required: "Employee name is required" })}
-              />
-              {errors.employeeName && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.employeeName.message}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Job Title */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Job Title
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaBriefcase className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="text"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Enter job title"
-                {...register("jobTitle", { required: "Job title is required" })}
-              />
-              {errors.jobTitle && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.jobTitle.message}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Role */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Role
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaUserShield className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="text"
-                value="Admin"
-                readOnly
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white transition-all duration-200 cursor-not-allowed"
-              />
-              <input type="hidden" {...register("role")} value="Admin" />
-            </div>
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Email
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaEnvelope className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="email"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 bg-gray-50 dark:bg-gray-600"
-                placeholder="Enter corporate email"
-                {...register("email", { required: "Email is required" })}
-                value={verifiedEmail || ''}
-                readOnly={!!verifiedEmail}
-              />
-              {verifiedEmail && (
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <FaCheckCircle className="text-green-500" />
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Organization Name */}
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Organization Name
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaBuilding className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter organization name"
+                    {...register("companyName", { required: "Organization name is required" })}
+                  />
+                  {errors.companyName && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.companyName.message}</span>
+                  )}
                 </div>
-              )}
-              {errors.email && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.email.message}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Contact Number */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Contact Number
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaPhone className="text-gray-400 group-hover:text-blue-500 transition-colors" />
               </div>
-              <input
-                type="text"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Enter 10-digit number"
-                maxLength={10}
-                {...register("mobileNum", {
-                  required: "Contact number is required",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Contact number must be exactly 10 digits"
-                  }
-                })}
-              />
-              {errors.mobileNum && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.mobileNum.message}</span>
-              )}
-            </div>
-          </div>
 
-          {/* Country Code */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Country
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaGlobe className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+              {/* Employee Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Employee Name
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaUser className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter employee name"
+                    {...register("employeeName", { required: "Employee name is required" })}
+                  />
+                  {errors.employeeName && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.employeeName.message}</span>
+                  )}
+                </div>
               </div>
-              <select
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
-                {...register("countryCode", { required: "Country is required" })}
+
+              {/* Job Title */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Job Title
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaBriefcase className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter job title"
+                    {...register("jobTitle", { required: "Job title is required" })}
+                  />
+                  {errors.jobTitle && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.jobTitle.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Role */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Role
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaUserShield className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    value="Admin"
+                    readOnly
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white transition-all duration-200 cursor-not-allowed"
+                  />
+                  <input type="hidden" {...register("role")} value="Admin" />
+                </div>
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Email
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaEnvelope className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="email"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 bg-gray-50 dark:bg-gray-600"
+                    placeholder="Enter corporate email"
+                    {...register("email", { required: "Email is required" })}
+                    value={verifiedEmail || ''}
+                    readOnly={!!verifiedEmail}
+                  />
+                  {verifiedEmail && (
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <FaCheckCircle className="text-green-500" />
+                    </div>
+                  )}
+                  {errors.email && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.email.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Contact Number */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Contact Number
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaPhone className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter 10-digit number"
+                    maxLength={10}
+                    {...register("mobileNum", {
+                      required: "Contact number is required",
+                      pattern: {
+                        value: /^[0-9]{10}$/,
+                        message: "Contact number must be exactly 10 digits"
+                      }
+                    })}
+                  />
+                  {errors.mobileNum && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.mobileNum.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Country Code */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Country
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaGlobe className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <select
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+                    {...register("countryCode", { required: "Country is required" })}
+                  >
+                    <option value="" disabled selected>Select Country</option>
+                    <option value="+91">India (+91)</option>
+                    <option value="+93">Afghanistan (+93)</option>
+                    <option value="+358">Aland Islands (+358)</option>
+                    <option value="+82">Korea (+82)</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <FaChevronDown className="text-gray-400 text-xs" />
+                  </div>
+                  {errors.countryCode && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.countryCode.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* User Type */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> User Type
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaUserTag className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <select
+                    {...register("userType", { required: "User type is required" })}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+                  >
+                    <option value="" disabled selected>Select User Type</option>
+                    <option value="Salaried">Salaried</option>
+                    <option value="Housewife">Housewife</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <FaChevronDown className="text-gray-400 text-xs" />
+                  </div>
+                  {errors.userType && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.userType.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Password
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="password"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter password"
+                    onPaste={(e) => e.preventDefault()}
+                    onCopy={(e) => e.preventDefault()}
+                    {...register("password", {
+                      required: "Password is required",
+                      pattern: {
+                        value: /^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                        message: "Must start with a capital, include a number & special character, min 9 chars"
+                      }
+                    })}
+                  />
+                  {errors.password && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.password.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Confirm Password */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <span className="text-red-500">*</span> Confirm Password
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="password"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Confirm password"
+                    onPaste={(e) => e.preventDefault()}
+                    onCopy={(e) => e.preventDefault()}
+                    {...register("confirmpassword", {
+                      required: "Confirm password is required",
+                      validate: (value) => value === password || "Passwords do not match"
+                    })}
+                  />
+                  {errors.confirmpassword && (
+                    <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.confirmpassword.message}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Promo Code */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Promo Code (Optional)
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaUser className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                    placeholder="Enter Promo Code"
+                    {...register("promoCode", { required: false })}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Password Requirements */}
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/50">
+              <p className="font-medium text-blue-700 dark:text-blue-300 mb-2">Password must:</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-blue-600 dark:text-blue-400">
+                <li className="flex items-center">
+                  <FaCheckCircle className="mr-2 text-xs" /> At least 9 characters
+                </li>
+                <li className="flex items-center">
+                  <FaCheckCircle className="mr-2 text-xs" /> Start with uppercase
+                </li>
+                <li className="flex items-center">
+                  <FaCheckCircle className="mr-2 text-xs" /> Include lowercase
+                </li>
+                <li className="flex items-center">
+                  <FaCheckCircle className="mr-2 text-xs" /> Include number
+                </li>
+                <li className="flex items-center sm:col-span-2">
+                  <FaCheckCircle className="mr-2 text-xs" /> Include special character (!@#$%&*?)
+                </li>
+              </ul>
+            </div>
+
+            {/* Additional Details Button */}
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowMoreDetails(prev => !prev)}
+                className="flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
               >
-                <option value="" disabled selected>Select Country</option>
-                <option value="+91">India (+91)</option>
-                <option value="+93">Afghanistan (+93)</option>
-                <option value="+358">Aland Islands (+358)</option>
-                <option value="+82">Korea (+82)</option>
-              </select>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <FaChevronDown className="text-gray-400 text-xs" />
-              </div>
-              {errors.countryCode && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.countryCode.message}</span>
-              )}
+                {showMoreDetails ? (
+                  <>
+                    <FaMinusCircle className="mr-2" /> Hide Additional Details
+                  </>
+                ) : (
+                  <>
+                    <FaPlusCircle className="mr-2" /> Add More Details
+                  </>
+                )}
+              </button>
             </div>
-          </div>
 
-          {/* User Type */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> User Type
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaUserTag className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+            {/* Additional Fields */}
+            {showMoreDetails && (
+              <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fadeIn gap-4">
+                {/* Gender */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Gender
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaVenusMars className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                      placeholder="Enter gender"
+                      {...register("gender")}
+                    />
+                  </div>
+                </div>
+
+                {/* Aadhar Card */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Aadhar Card
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                      placeholder="Enter Aadhar card number"
+                      {...register("adharcard")}
+                    />
+                  </div>
+                </div>
+
+                {/* PAN Card */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    PAN Card
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                      placeholder="Enter PAN card number"
+                      {...register("pancard")}
+                    />
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Address
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaMapMarkerAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
+                      placeholder="Enter address"
+                      {...register("address")}
+                    />
+                  </div>
+                </div>
+
+                {/* Date of Birth */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Date of Birth
+                  </label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaCalendarAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                    <input
+                      type="date"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
+                      {...register("dateofbirth")}
+                    />
+                  </div>
+                </div>
+
+                {/* Terms and Conditions */}
+                <div className="md:col-span-2 flex items-start space-x-3 pt-2">
+                  <div className="flex items-center h-5">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
+                      {...register("terms", { required: showMoreDetails ? "You must agree to the terms" : false })}
+                    />
+                  </div>
+                  <label className="text-sm text-gray-700 dark:text-gray-300">
+                    I agree to the <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">Terms and Conditions</a>
+                  </label>
+                  {errors.terms && (
+                    <span className="text-red-500 text-xs block animate-fadeIn">{errors.terms.message}</span>
+                  )}
+                </div>
               </div>
-              <select
-                {...register("userType", { required: "User type is required" })}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
-              >
-                <option value="" disabled selected>Select User Type</option>
-                <option value="Salaried">Salaried</option>
-                <option value="Housewife">Housewife</option>
-              </select>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <FaChevronDown className="text-gray-400 text-xs" />
-              </div>
-              {errors.userType && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.userType.message}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Password
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="password"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Enter password"
-                onPaste={(e) => e.preventDefault()}
-                onCopy={(e) => e.preventDefault()}
-                {...register("password", {
-                  required: "Password is required",
-                  pattern: {
-                    value: /^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: "Must start with a capital, include a number & special character, min 9 chars"
-                  }
-                })}
-              />
-              {errors.password && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.password.message}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Confirm Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              <span className="text-red-500">*</span> Confirm Password
-            </label>
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FaLock className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </div>
-              <input
-                type="password"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                placeholder="Confirm password"
-                onPaste={(e) => e.preventDefault()}
-                onCopy={(e) => e.preventDefault()}
-                {...register("confirmpassword", {
-                  required: "Confirm password is required",
-                  validate: (value) => value === password || "Passwords do not match"
-                })}
-              />
-              {errors.confirmpassword && (
-                <span className="text-red-500 text-xs mt-1 block animate-fadeIn">{errors.confirmpassword.message}</span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Password Requirements */}
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/50">
-          <p className="font-medium text-blue-700 dark:text-blue-300 mb-2">Password must:</p>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-blue-600 dark:text-blue-400">
-            <li className="flex items-center">
-              <FaCheckCircle className="mr-2 text-xs" /> At least 9 characters
-            </li>
-            <li className="flex items-center">
-              <FaCheckCircle className="mr-2 text-xs" /> Start with uppercase
-            </li>
-            <li className="flex items-center">
-              <FaCheckCircle className="mr-2 text-xs" /> Include lowercase
-            </li>
-            <li className="flex items-center">
-              <FaCheckCircle className="mr-2 text-xs" /> Include number
-            </li>
-            <li className="flex items-center sm:col-span-2">
-              <FaCheckCircle className="mr-2 text-xs" /> Include special character (!@#$%&*?)
-            </li>
-          </ul>
-        </div>
-
-        {/* Additional Details Button */}
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={() => setShowMoreDetails(prev => !prev)}
-            className="flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
-          >
-            {showMoreDetails ? (
-              <>
-                <FaMinusCircle className="mr-2" /> Hide Additional Details
-              </>
-            ) : (
-              <>
-                <FaPlusCircle className="mr-2" /> Add More Details
-              </>
             )}
-          </button>
+
+            {/* Submit Button */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 font-medium shadow-md hover:shadow-lg flex items-center justify-center"
+              >
+                <span>Register Organization</span>
+                <FaArrowRight className="ml-2" />
+              </button>
+            </div>
+
+            {/* Login Link */}
+            {/* <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+              Already have an account?{' '}
+              <button
+                type="button"
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline"
+                onClick={() => document.getElementById("my_modal_3").showModal()}
+              >
+                Login
+              </button>
+              <Login />
+            </div> */}
+          </form>
         </div>
-
-        {/* Additional Fields */}
-        {showMoreDetails && (
-          <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fadeIn  gap-4">
-            {/* Gender */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Gender
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaVenusMars className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                  placeholder="Enter gender"
-                  {...register("gender")}
-                />
-              </div>
-            </div>
-
-            {/* Aadhar Card */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Aadhar Card
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                  placeholder="Enter Aadhar card number"
-                  {...register("adharcard")}
-                />
-              </div>
-            </div>
-
-            {/* PAN Card */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                PAN Card
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaIdCard className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                  placeholder="Enter PAN card number"
-                  {...register("pancard")}
-                />
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Address
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaMapMarkerAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400"
-                  placeholder="Enter address"
-                  {...register("address")}
-                />
-              </div>
-            </div>
-
-            {/* Date of Birth */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Date of Birth
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaCalendarAlt className="text-gray-400 group-hover:text-blue-500 transition-colors" />
-                </div>
-                <input
-                  type="date"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 group-hover:border-blue-400 appearance-none"
-                  {...register("dateofbirth")}
-                />
-              </div>
-            </div>
-
-            {/* Terms and Conditions */}
-            <div className="md:col-span-2 flex items-start space-x-3 pt-2">
-              <div className="flex items-center h-5">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
-                  {...register("terms", { required: showMoreDetails ? "You must agree to the terms" : false })}
-                />
-              </div>
-              <label className="text-sm text-gray-700 dark:text-gray-300">
-                I agree to the <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline">Terms and Conditions</a>
-              </label>
-              {errors.terms && (
-                <span className="text-red-500 text-xs block animate-fadeIn">{errors.terms.message}</span>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Submit Button */}
-        <div className="pt-4">
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 font-medium shadow-md hover:shadow-lg flex items-center justify-center"
-          >
-            <span>Register Organization</span>
-            <FaArrowRight className="ml-2" />
-          </button>
-        </div>
-
-        {/* Login Link */}
-        {/* <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-          Already have an account?{' '}
-          <button
-            type="button"
-            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline"
-            onClick={() => document.getElementById("my_modal_3").showModal()}
-          >
-            Login
-          </button>
-          <Login />
-        </div> */}
-      </form>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 

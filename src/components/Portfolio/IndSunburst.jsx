@@ -12,7 +12,7 @@
 
 //         const fetchGraphData = async () => {
 //             const uploadId = localStorage.getItem("uploadId"); // ✅ Get from localStorage or props
-    
+
 //             if (!uploadId) {
 //                 setError("Missing uploadId. Please upload a file first.");
 //                 return;
@@ -23,7 +23,7 @@
 //                 const response = await axios.post(`${API_BASE}/api/file/create_industry_sunburst`,
 //                     new URLSearchParams({ uploadId }), // use form format
 //                 );
-                
+
 //                 console.log("IndSunburst Data:", response.data); // Log response
 //                 if (!response.data || !response.data.figure) {
 //                     setError("Graph generation failed: Invalid response format.");
@@ -60,7 +60,7 @@
 //   displaylogo: false, // ⛔ Hides the Plotly logo
 //   ...(graphData?.config || {}),
 // }}
-   
+
 //                />
 //              )}
 //         </div>
@@ -125,38 +125,38 @@ const IndSunburst = () => {
 
   return (
     <div>
-  {!graphData ? (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
-      <HashLoader color="#0369a1" size={60} />
-      <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-        SMDA...
-      </p>
-    </div>
-  ) : (
-    <>
-      {error && <p className="text-red-500">{error}</p>}
-      {graphData && graphData.data && graphData.layout && (
-        <Plot
-          data={graphData.data}
-          layout={{
-            ...graphData.layout,
-            autosize: true,
-            responsive: true,
-            title: graphData.layout?.title || 'Industry Sunburst',
-            margin: { t: 50, l: 50, r: 30, b: 50 },
-          }}
-          useResizeHandler={true}
-          style={{ width: '100%', height: '100%' }}
-          config={{
-            responsive: true,
-            displaylogo: false,
-            ...(graphData?.config || {}),
-          }}
-        />
+      {!graphData ? (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
+          <HashLoader color="#0369a1" size={60} />
+          <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
+            CMDA...
+          </p>
+        </div>
+      ) : (
+        <>
+          {error && <p className="text-red-500">{error}</p>}
+          {graphData && graphData.data && graphData.layout && (
+            <Plot
+              data={graphData.data}
+              layout={{
+                ...graphData.layout,
+                autosize: true,
+                responsive: true,
+                title: graphData.layout?.title || 'Industry Sunburst',
+                margin: { t: 50, l: 50, r: 30, b: 50 },
+              }}
+              useResizeHandler={true}
+              style={{ width: '100%', height: '100%' }}
+              config={{
+                responsive: true,
+                displaylogo: false,
+                ...(graphData?.config || {}),
+              }}
+            />
+          )}
+        </>
       )}
-    </>
-  )}
-</div>
+    </div>
   );
 };
 

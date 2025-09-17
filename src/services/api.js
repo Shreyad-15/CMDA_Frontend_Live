@@ -13,30 +13,62 @@
 //   };
 
 
-import axios from "axios";
-// import JwtUtil from "./JwtUtil"; // Import JwtUtil for token validation
-import JwtUtil from "./JwtUtil";
-import toast from "react-hot-toast";
+import axios from 'axios';
+import JwtUtil from './JwtUtil';
+import toast from 'react-hot-toast';
 
 const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
-const USER_API_URL = `${API_BASE}/Userprofile`;// Individual API
-const CORPORATE_API_URL = `${API_BASE}/corporate`; // Corporate API
+const USER_API_URL = `${API_BASE}/Userprofile`;
+const CORPORATE_API_URL = `${API_BASE}/corporate`;
 const ACTIVITY_API_URL = `${API_BASE}/activity`;
 
-/**
- * Retrieves a valid authentication token from localStorage.
- */
-const getAuthToken = () => {
-  const token = localStorage.getItem("authToken");
+const api = axios.create({
+  baseURL: API_BASE,
+  timeout: 10000,
+});
+
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token && !JwtUtil.isTokenExpired(token)) {
+      config.headers.Authorization = `Bearer ${token}`;
+    } else {
+      console.warn('No valid authToken found for request:', config.url);
+      if (token) {
+        localStorage.removeItem('authToken');
+        window.dispatchEvent(new Event('storage'));
+        toast.error('Session expired. Please log in again.');
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      console.error('401 Unauthorized:', error.response.data);
+      localStorage.removeItem('authToken');
+      window.dispatchEvent(new Event('storage'));
+      toast.error('Session invalid or expired. Please log in again.');
+    }
+    return Promise.reject(error);
+  }
+);
+
+export const getAuthToken = () => {
+  const token = localStorage.getItem('authToken');
   if (!token || JwtUtil.isTokenExpired(token)) {
-    // console.warn("Token is missing or expired. Logging out.");
-    localStorage.removeItem("authToken");
-    window.dispatchEvent(new Event("storage"));
+    console.warn('Token is missing or expired. Logging out.');
+    localStorage.removeItem('authToken');
+    window.dispatchEvent(new Event('storage'));
     return null;
   }
   return token;
 };
-
+export { API_BASE, USER_API_URL, CORPORATE_API_URL, ACTIVITY_API_URL };
 /**
  * Fetches the user's profile picture based on their type (corporate or individual).
  */

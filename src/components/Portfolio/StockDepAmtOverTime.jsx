@@ -145,7 +145,7 @@
 //     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
 //       <HashLoader color="#0369a1" size={60} />
 //       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-//         SMDA...
+//         CMDA...
 //       </p>
 //     </div>
 //       )}
@@ -1978,8 +1978,8 @@ const CustomTooltip = ({ content, children }) => {
 
   return (
     <div style={{ display: 'inline-block', position: 'relative' }}
-         onMouseEnter={() => setIsVisible(true)}
-         onMouseLeave={() => setIsVisible(false)}
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
     >
       {children}
       {isVisible && (
@@ -2750,7 +2750,7 @@ export default function StockDeployedAmtOverTimeNivo() {
               legend: 'Amount (₹)',
               legendPosition: 'middle',
               legendOffset: -35, // Reduced offset
-              format: v => `${(v/1000).toFixed(0)}K`,
+              format: v => `${(v / 1000).toFixed(0)}K`,
               tickPadding: 5,
               tickSize: 4 // Smaller ticks
             }}

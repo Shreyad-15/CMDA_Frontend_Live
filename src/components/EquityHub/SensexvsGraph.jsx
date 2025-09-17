@@ -66,7 +66,7 @@ import { HashLoader } from "react-spinners";
 
 const SensexvsGraph = ({ symbol }) => {
   const [plotData, setPlotData] = useState(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
 
@@ -111,14 +111,7 @@ const SensexvsGraph = ({ symbol }) => {
       .catch((error) => console.error("Error fetching plot data:", error));
   }, [symbol]);
 
-  const handlePlayVoice = () => {
-    if (plotData && plotData.comment) {
-      const utterance = new SpeechSynthesisUtterance(plotData.comment);
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      speechSynthesis.speak(utterance);
-    }
-  };
+  
 
   if (!plotData) {
     return  <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
@@ -129,7 +122,7 @@ const SensexvsGraph = ({ symbol }) => {
     </div>;
   }
 
-  const { scatter_data, layout, comment, config } = plotData;
+  const { scatter_data, layout, config } = plotData;
 
   return (
     <div>
@@ -141,10 +134,7 @@ const SensexvsGraph = ({ symbol }) => {
           ...(config || {})
         }}
       />
-      <p className="text-l font-bold">{comment}</p>
-      <button className="m-5 btn btn-wide btn-warning btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={handlePlayVoice} disabled={isSpeaking}>
-        {isSpeaking ? "Speaking..." : "Play Voice"}
-      </button>
+     
     </div>
   );
 };

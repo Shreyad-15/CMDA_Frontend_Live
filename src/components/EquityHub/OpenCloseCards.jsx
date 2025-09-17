@@ -1462,7 +1462,7 @@
 //   const [error, setError] = useState(null);
 //   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
 //   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
-  
+
 
 //   const getAuthToken = () => localStorage.getItem("authToken");
 
@@ -1552,7 +1552,7 @@
 //        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
 //       <HashLoader color="#0369a1" size={60} />
 //       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-//         SMDA...
+//         CMDA...
 //       </p>
 //     </div>
 //     );
@@ -1728,7 +1728,7 @@
 //   const [error, setError] = useState(null);
 //   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
 //   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
-  
+
 
 //   // const getAuthToken = () => localStorage.getItem("authToken");
 
@@ -2118,11 +2118,10 @@ const OpenCloseCards = ({ symbol, companyName }) => {
         transition={{ delay: 0.2 }}
       >
         <div
-          className={`flex items-center gap-3 text-2xl sm:text-xl font-bold ${
-            Number(change_from_prev_close) >= 0
+          className={`flex items-center gap-3 text-2xl sm:text-xl font-bold ${Number(change_from_prev_close) >= 0
               ? "text-green-600 dark:text-green-400"
               : "text-red-600 dark:text-red-400"
-          }`}
+            }`}
         >
           {Number(change_from_prev_close) >= 0 ? (
             <FaArrowTrendUp className="text-xl sm:text-4xl" />
@@ -2132,11 +2131,10 @@ const OpenCloseCards = ({ symbol, companyName }) => {
           {formatINR(mkt_summary.Close)}
         </div>
         <div
-          className={`text-sm sm:text-base px-4 py-2 rounded-full font-semibold shadow-sm ${
-            Number(change_from_prev_close) >= 0
+          className={`text-sm sm:text-base px-4 py-2 rounded-full font-semibold shadow-sm ${Number(change_from_prev_close) >= 0
               ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
               : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
-          }`}
+            }`}
         >
           {formatINR(change_from_prev_close)} ({percent_change}%)
         </div>

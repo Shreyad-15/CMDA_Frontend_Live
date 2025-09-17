@@ -299,9 +299,11 @@ import { HashLoader } from "react-spinners";
 
 const DelRate = ({ symbol }) => {
   const [gaugeData, setGaugeData] = useState(null);
-  const [comment, setComment] = useState("");
+
+  
   const [loading, setLoading] = useState(true);
-  // const [showComment, setShowComment] = useState(false);
+  
+  
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
 
@@ -327,7 +329,7 @@ const DelRate = ({ symbol }) => {
     const cachedData = getCachedData(cacheKey);
     if (cachedData) {
       setGaugeData(cachedData);
-      setComment(cachedData.comment || "");
+      
       setLoading(false);
       return;
     }
@@ -343,7 +345,7 @@ const DelRate = ({ symbol }) => {
       .then((res) => res.json())
       .then((result) => {
         setGaugeData(result || null);
-        setComment(result.comment || "");
+        
         setCachedData(cacheKey, result);
       })
       .catch((err) => console.error("Error fetching gauge data:", err))

@@ -198,7 +198,7 @@ const PortfolioResults = () => {
 
     return (
         <div className="container mx-auto px-6 py-8">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Portfolio FIFO Results</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Current Holdings</h2>
 
             {error && <p className="text-red-600 font-medium mb-4">{error}</p>}
 
@@ -227,13 +227,12 @@ const PortfolioResults = () => {
                                         .map(([key, value], i) => (
                                             <td
                                                 key={i}
-                                                className={`px-4 py-2 border-b border-gray-200 text-sm whitespace-nowrap ${
-                                                    key === "Unrealized_PNL" || key === "Realized_PNL"
-                                                        ? Number(value) < 0
-                                                            ? "text-red-600 font-medium"
-                                                            : "text-green-600 font-medium"
-                                                        : "text-gray-700"
-                                                }`}
+                                                className={`px-4 py-2 border-b border-gray-200 text-sm whitespace-nowrap ${key === "Unrealized_PNL" || key === "Realized_PNL"
+                                                    ? Number(value) < 0
+                                                        ? "text-red-600 font-medium"
+                                                        : "text-green-600 font-medium"
+                                                    : "text-gray-700"
+                                                    }`}
                                             >
                                                 {value}
                                             </td>

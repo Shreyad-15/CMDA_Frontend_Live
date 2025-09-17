@@ -270,6 +270,15 @@ const IndiceCard = ({ sectorData, isSelected, openModal, setSelectedSector }) =>
     'from-slate-900 to-sky-600'
   ][sectorHash % 5];
 
+
+  //   const gradientClass = [
+  //   'from-blue-800 via-blue-500 to-blue-800',
+  //   'from-blue-800 via-blue-500 to-blue-800',
+  //   'from-blue-800 via-blue-500 to-blue-800',
+  //   'from-blue-800 via-blue-500 to-blue-800',
+  //   'from-blue-800 via-blue-500 to-blue-800'
+  // ][sectorHash % 5];
+
   const handleViewDetails = () => {
     setSelectedSector(sectorData);
     openModal();

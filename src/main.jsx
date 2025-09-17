@@ -4,12 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './components/AuthContext.jsx'
+import { HelmetProvider } from 'react-helmet-async';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
 
   <AuthProvider>
+  <HelmetProvider>
   <App />
+  </HelmetProvider>
  </AuthProvider>
  
   </BrowserRouter>,

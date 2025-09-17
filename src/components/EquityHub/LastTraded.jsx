@@ -70,7 +70,7 @@
 //             {showComment ? "Hide info" : <RiInformation2Fill />}
 //           </button>
 
-          
+
 //         </div>
 
 //         {showComment && (
@@ -96,7 +96,7 @@ import { HashLoader } from "react-spinners";
 
 const LastTraded = ({ symbol }) => {
   const [plotData, setPlotData] = useState(null);
-  // const [showComment, setShowComment] = useState(false);
+
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
 
@@ -145,7 +145,7 @@ const LastTraded = ({ symbol }) => {
   }, [symbol]);
 
   if (!plotData || !plotData.figure || !plotData.figure.data) {
-    return  <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
+    return <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
       <HashLoader color="#0369a1" size={60} />
       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
         CMDA...
@@ -154,33 +154,72 @@ const LastTraded = ({ symbol }) => {
   }
 
   return (
-    <div className="relative mb-3">
+    // <div className="relative mb-3">
+    //   <Plot
+    //     data={plotData.figure.data}
+    //     layout={{
+    //       ...plotData.figure.layout,
+    //       autosize: true,
+    //       responsive: true,
+    //       margin: { t: 50, l: 50, r: 30, b: 50 },
+    //       font: { family: "Arial", size: 12, color: "black" },
+    //       xaxis: {
+    //         ...plotData.figure.layout?.xaxis,
+    //         title: { text: "", font: { size: 14 } },
+    //         tickfont: { size: 17 },
+    //       },
+    //       yaxis: {
+    //         ...plotData.figure.layout?.yaxis,
+    //         title: { text: "Traded Price", font: { size: 14 } },
+    //         tickfont: { size: 17 },
+    //       },
+    //       showlegend: true,
+    //     }}
+    //     useResizeHandler={true}
+    //     style={{ width: "100%", height: "100%" }}
+    //     config={plotData.config}
+    //   />
+
+    // </div>
+    <div className="relative mb-6 px-4"> {/* Added horizontal padding */}
       <Plot
         data={plotData.figure.data}
         layout={{
           ...plotData.figure.layout,
           autosize: true,
           responsive: true,
-          margin: { t: 50, l: 50, r: 30, b: 50 },
-          font: { family: "Arial", size: 12, color: "black" },
+          margin: { t: 40, l: 60, r: 40, b: 60 }, // more breathing space
+          font: { family: "Arial, sans-serif", size: 13, color: "#111" },
           xaxis: {
             ...plotData.figure.layout?.xaxis,
-            title: { text: "", font: { size: 14 } },
-            tickfont: { size: 17 },
+            title: { text: "", font: { size: 15 } },
+            tickfont: { size: 15 },
+            automargin: true,
           },
           yaxis: {
             ...plotData.figure.layout?.yaxis,
-            title: { text: "Traded Price", font: { size: 14 } },
-            tickfont: { size: 17 },
+            title: { text: "Traded Price", font: { size: 15 } },
+            tickfont: { size: 15 },
+            automargin: true,
           },
           showlegend: true,
+          legend: {
+            orientation: "h",
+            yanchor: "bottom",
+            y: -0.25,
+            xanchor: "center",
+            x: 0.5,
+          },
         }}
         useResizeHandler={true}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%", minHeight: "450px" }}
         config={plotData.config}
       />
-     
+
+      {/* Info Section */}
+   
     </div>
+
   );
 };
 

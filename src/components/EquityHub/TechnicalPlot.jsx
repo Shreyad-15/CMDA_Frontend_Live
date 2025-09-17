@@ -32,9 +32,9 @@
 //   if (!plotData) {
 //     return <span className="loading loading-bars loading-lg"></span>;
 //   }
-  
+
 //   const { figure, comment } = plotData; // Destructure correctly
-  
+
 //   return (
 //     <div>
 //       <h2 className="text-2xl text-center font-bold mb-3">Technical Plot</h2>
@@ -113,7 +113,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -122,7 +122,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button>
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100 dark:bg-slate-800 dark:text-white">
@@ -238,7 +238,7 @@
 //     //       >
 //     //         {showComment ? 'Hide info' : <RiInformation2Fill />}
 //     //       </button>
-      
+
 //     //       <button
 //     //         className="text-xl font-bold"
 //     //         onClick={handlePlayVoice}
@@ -247,7 +247,7 @@
 //     //         {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //     //       </button>
 //     //     </div>
-      
+
 //     //     {/* Comments section */}
 //     //     {showComment && (
 //     //       <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100 dark:bg-slate-800 dark:text-white">
@@ -376,7 +376,7 @@
 //     return  <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
 //       <HashLoader color="#0369a1" size={60} />
 //       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-//         SMDA...
+//         CMDA...
 //       </p>
 //     </div>;
 //   }
@@ -461,8 +461,8 @@ import Plot from "react-plotly.js";
 
 const TechnicalPlot = ({ symbol }) => {
   const [plotData, setPlotData] = useState(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [showComment, setShowComment] = useState(false);
+
+
   const [fullscreen, setFullscreen] = useState(false);
   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
 
@@ -525,21 +525,7 @@ const TechnicalPlot = ({ symbol }) => {
           useResizeHandler={true} // Handle container resizing
         />
       </div>
-      <div className="bg-gray-200 p-4 dark:bg-slate-500 dark:text-white">
-        <div className="bg-white flex justify-center items-center space-x-4 p-3 rounded-lg shadow-md dark:bg-slate-800 dark:text-white">
-          <button
-            className="px-6 text-xl font-bold"
-            onClick={() => setShowComment(!showComment)}
-          >
-            {showComment ? "Hide info" : <RiInformation2Fill />}
-          </button>
-        </div>
-        {showComment && (
-          <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100 dark:bg-slate-800 dark:text-white">
-            <p className="text-l font-bold">{plotData.comment}</p>
-          </div>
-        )}
-      </div>
+
     </>
   );
 

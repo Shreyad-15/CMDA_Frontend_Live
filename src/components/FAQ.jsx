@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -108,7 +108,7 @@ const FAQ = () => {
             </p>
           </motion.div>
 
-          <motion.img
+          <img
             src="/faq.avif"
             alt="FAQ Illustration"
             className="w-40 h-40 md:w-48 md:h-48 object-contain"
@@ -135,11 +135,10 @@ const FAQ = () => {
             {Object.keys(allFaqs).map(category => (
               <button
                 key={category}
-                className={`relative px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 ${
-                  activeCategory === category
-                    ? 'bg-cyan-500 text-white border-blue-600'
-                    : 'bg-gray-200 dark:bg-slate-700 dark:text-white'
-                }`}
+                className={`relative px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 ${activeCategory === category
+                  ? 'bg-cyan-500 text-white border-blue-600'
+                  : 'bg-gray-200 dark:bg-slate-700 dark:text-white'
+                  }`}
                 onClick={() => setActiveCategory(category)}
               >
                 {category}
@@ -221,9 +220,9 @@ const FAQ = () => {
       </div>
 
       {/* Complaint Form Section */}
-      <div className="bg-blue-50 dark:bg-slate-800 py-12">
+      {/* <div className="bg-blue-50 dark:bg-slate-800 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-10 items-center">
-          {/* Form */}
+          {/* Form 
           <form
             onSubmit={handleSubmit}
             className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-md border dark:border-gray-700 space-y-5"
@@ -272,7 +271,7 @@ const FAQ = () => {
             </button>
           </form>
 
-          {/* Image */}
+          {/* Image 
           <div className="text-center">
             <img
               src="https://cdn-icons-png.flaticon.com/512/8942/8942698.png"
@@ -281,7 +280,7 @@ const FAQ = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </div>

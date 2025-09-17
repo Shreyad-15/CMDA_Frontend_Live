@@ -1,13 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Spicy+Rice&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-     font-weight: 300;
-    
+body {
+  font-weight: 300;
+
 }
 
 /* index.css */
@@ -23,15 +22,14 @@ body{
 /* *{
      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
      } */
-*
-{
-     /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
+* {
+  /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
 
 
-    /* font-family:Verdana, Geneva, Tahoma, sans-serif
+  /* font-family:Verdana, Geneva, Tahoma, sans-serif
     font-family:Georgia, 'Times New Roman', Times, serif */
 
-     font-family:Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif
 }
 
 
@@ -54,14 +52,14 @@ body{
 /* In Slider.css or a new file */
 
 .fancy-carousel-navigation {
-     display: none !important;
-   }
-   
-   .fancy-carousel-indicators {
-     display: none !important;
-   }
-   
-   .modal-right::backdrop {
+  display: none !important;
+}
+
+.fancy-carousel-indicators {
+  display: none !important;
+}
+
+.modal-right::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -79,6 +77,7 @@ body{
 .joyride-tooltip {
   z-index: 99999 !important;
 }
+
 .joyride-overlay {
   z-index: 99998 !important;
 }
@@ -98,6 +97,30 @@ body{
 .disable {
   @apply pointer-events-none opacity-50 cursor-not-allowed;
 }
+
 .disable a {
   @apply text-gray-400;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+    /* Start immediately without blank */
+  }
+
+  100% {
+    transform: translateX(-50%);
+    /* Only move half, since we duplicated items */
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  min-width: max-content;
+  animation: marquee 180s linear infinite;
+  /* Slower speed */
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

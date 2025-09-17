@@ -11,7 +11,7 @@
 //    const [speechPosition, setSpeechPosition] = useState(0); 
 //    const [showComment,setShowComment]=useState(false)
 //   const API_BASE = import.meta.env.VITE_URL || `${window.location.origin}/api`;
-  
+
 //    useEffect(() => {
 //       if (symbol) {
 //         // fetch("http://192.168.1.250:8080/CMDA-3.3.9/api/stocks/predict_volatility", {
@@ -90,7 +90,7 @@
 //           >
 //             {showComment ? 'Hide info' : <RiInformation2Fill />}
 //           </button>
-      
+
 //           <button
 //             className="text-xl font-bold"
 //             onClick={handlePlayVoice}
@@ -99,7 +99,7 @@
 //             {isSpeaking ? <TbPlayerPauseFilled /> : <IoIosPlay />}
 //           </button>
 //         </div>
-      
+
 //         {/* Comments section */}
 //         {showComment && (
 //           <div className="flex justify-center items-center mt-4 p-4 border rounded bg-gray-100 dark:bg-slate-800 dark:text-white">
@@ -193,10 +193,10 @@ const VoltyPlot = ({ symbol }) => {
   };
 
   if (!plotData) {
-    return  <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
+    return <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300">
       <HashLoader color="#0369a1" size={60} />
       <p className="mt-4 text-sky-700 dark:text-white font-semibold text-lg animate-pulse">
-        SMDA...
+        CMDA...
       </p>
     </div>;
   }
